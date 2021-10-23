@@ -13,7 +13,7 @@ const cors = require('cors')
 const session = require('express-session')
 
 /* PORT */
-const PORT = process.env.PORT || 3003
+const PORT = process.env.PORT || 3000
 
 /* == Express Instance == */
 const app = express()

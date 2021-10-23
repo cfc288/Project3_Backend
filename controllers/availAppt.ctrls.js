@@ -2,16 +2,15 @@ const db = require('../models')
 
 // index
 const index = (req, res)=>{
-  db.availAppt.find({}, (error, availAppt)=>{
+  db.AvailAppt.find({}, (error, AvailAppt)=>{
     if(error) return res.status(400).json({error: error.message})
-
     return res.status(200).json(availAppt)
   })
 }
 
 // create
 const create = (req, res)=>{
-  db.availAppt.create(req.body, (error, createdAvailAppt)=>{
+  db.AvailAppt.create(req.body, (error, createdAvailAppt)=>{
     if(error) return res.status(400).json({error: error.message})
     return res.status(201).json(createdAvailAppt)
   })
@@ -19,7 +18,7 @@ const create = (req, res)=>{
 
 // update
 const update = (req, res)=>{
-  db.availAppt.findByIdAndUpdate(
+  db.AvailAppt.findByIdAndUpdate(
     req.params.id,
     req.body,
     {
@@ -33,7 +32,7 @@ const update = (req, res)=>{
 
 // delete
 const destroy = (req, res)=>{
-  db.availAppt.findByIdAndDelete(res.params.id, (error, deletedAvailAppt)=>{
+  db.AvailAppt.findByIdAndDelete(res.params.id, (error, deletedAvailAppt)=>{
     if(error) return res.status(400).json({error: error.message})
 
     return res.status(200).json({
