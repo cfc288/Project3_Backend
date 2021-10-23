@@ -1,4 +1,5 @@
 module.exports = {
-  holidays: require('./appointments.routes'),
+  appointments: require('./appointments.routes'),
+  availAppt: require('./availAppt.routes'),
   users: require('./users.routes')
 }

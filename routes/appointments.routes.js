@@ -1,14 +1,12 @@
-const mongoose = require('mongoose')
+const express = require('express')
+const router = express.Router()
 
-// connection string
-const connectionStr = process.env.MONGODB_URI || 'mongodb://localhost:27017/appointmentsDB'
+/* == CTRLS == */
+const ctrls = require('../controllers')
 
-// set up connection
-mongoose.connect(connectionStr, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+router.get('/', ctrls.appointments.index)
+router.post('/', ctrls.appointments.create)
+router.put('/:id', ctrls.appointments.update)
+router.delete('/:id', ctrls.appointments.destroy)
 
-mongoose.connection.on('connected', ()=> console.log('mongodb connected :)'))
-mongoose.connection.on('error', (error)=> console.log('mongodb error', error))
-mongoose.connection.on('disconnected', ()=> console.log('mongodb disconnected :('))
+module.exports = router

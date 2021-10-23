@@ -1,7 +1,7 @@
 const db = require('../models')
 const bcrypt = require('bcrypt')
 
-const signup = (req, res =>{
+const signup = (req, res)=>{
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
 
   db.User.create(req.body, (error, createdUser)=>{
@@ -12,7 +12,7 @@ const signup = (req, res =>{
       res.status(201).json(createdUser)
     }
   })
-})
+}
 
 // User login route (create session)
 const login = (req, res)=>{

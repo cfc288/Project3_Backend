@@ -2,42 +2,42 @@ const db = require('../models')
 
 // index
 const index = (req, res)=>{
-  db.Appointment.find({}, (error, appointments)=>{
+  db.availAppt.find({}, (error, availAppt)=>{
     if(error) return res.status(400).json({error: error.message})
 
-    return res.status(200).json(appointments)
+    return res.status(200).json(availAppt)
   })
 }
 
 // create
 const create = (req, res)=>{
-  db.Appointment.create(req.body, (error, createdAppointment)=>{
+  db.availAppt.create(req.body, (error, createdAvailAppt)=>{
     if(error) return res.status(400).json({error: error.message})
-    return res.status(201).json(createdAppointment)
+    return res.status(201).json(createdAvailAppt)
   })
 }
 
 // update
 const update = (req, res)=>{
-  db.Appointment.findByIdAndUpdate(
+  db.availAppt.findByIdAndUpdate(
     req.params.id,
     req.body,
     {
       new: true
     },
-    (error, updatedAppointment)=>{
+    (error, updatedAvailAppt)=>{
       if(error) return res.status(400).json({error: error.message})
-      return res.status(200).json(updatedAppointment)
+      return res.status(200).json(updatedAvailAppt)
     })
 }
 
 // delete
 const destroy = (req, res)=>{
-  db.Appointment.findByIdAndDelete(res.params.id, (error, deletedAppointment)=>{
+  db.availAppt.findByIdAndDelete(res.params.id, (error, deletedAvailAppt)=>{
     if(error) return res.status(400).json({error: error.message})
 
     return res.status(200).json({
-      message: `Appointment ${deletedAppointment.name} deleted succesfully`
+      message: `Appointment ${deletedAvailAppt.name} deleted succesfully`
     })
   })
 }
