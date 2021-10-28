@@ -1,10 +1,10 @@
 const mongoose = require('mongoose')
 const appointmentSchema = new mongoose.Schema({
- firstName: {type: String, required: true},
- lastName: {type: String, required: true},
- day:{type: Number},
- month:{type: Number},
- year:{type: Number},
+appptTime: {type: String, required: true},
+firstName: {type: String, required: true},
+lastName: {type: String, required: true},
+over18: {type: Boolean, default: false}
+
 
 })
 
