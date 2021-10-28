@@ -4,7 +4,7 @@ const db = require('../models')
 const index = (req, res)=>{
   db.AvailAppt.find({}, (error, AvailAppt)=>{
     if(error) return res.status(400).json({error: error.message})
-    return res.status(200).json(availAppt)
+    return res.status(200).json(AvailAppt)
   })
 }
 
@@ -32,11 +32,11 @@ const update = (req, res)=>{
 
 // delete
 const destroy = (req, res)=>{
-  db.AvailAppt.findByIdAndDelete(res.params.id, (error, deletedAvailAppt)=>{
+  db.AvailAppt.findByIdAndDelete(req.params.id, (error, deletedAvailAppt)=>{
     if(error) return res.status(400).json({error: error.message})
 
     return res.status(200).json({
-      message: `Appointment ${deletedAvailAppt.name} deleted succesfully`
+      message: `Appointment deleted succesfully`
     })
   })
 }

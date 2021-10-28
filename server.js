@@ -20,7 +20,7 @@ const app = express()
 
 /* == middlewares == */
 // set up cors middleware
-const whitelist = ['http://localhost:3000', 'https://calenderunit3app.herokuapp.com/']
+const whitelist = ['http://localhost:3000', 'heroku url']
 const corsOptions ={
   origin: (origin, callback)=>{
     if(whitelist.indexOf(origin) !== -1 || !origin){
@@ -54,7 +54,7 @@ app.set('trust')  //trust first proxy
 app.use(session({
   secret: 'asdfas',
   resave: false,
-  saveUninitialised: false,
+  saveUninitialized: false,
 }))
 
 
