@@ -5,7 +5,7 @@ const appointmentSchema = new mongoose.Schema({
  day:{type: Number},
  month:{type: Number},
  year:{type: Number},
- time: {type: Number},
+
 })
 
 const Appointment = mongoose.model('Appointment', appointmentSchema)
