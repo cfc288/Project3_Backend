@@ -22,7 +22,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 
 /* == middlewares == */
 // set up cors middleware
-const corsOptions = ['http://localhost:3000', 'https://proj3-calendar-frontend.herokuapp.com']
+const allowedURLs = ['http://localhost:3000', 'https://proj3-calendar-frontend.herokuapp.com']
 
 const corsOptions = {
   origin: (origin, callback) => {
