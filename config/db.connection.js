@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 // connection string
 const connectionStr = process.env.MONGODBURI || 'mongodb://localhost:27017/appointmentsDB'
-
+console.log(connectionStr)
 // set up connection
 mongoose.connect(connectionStr, {
   useNewUrlParser: true,
