@@ -18,9 +18,11 @@ const PORT = process.env.PORT || 3003
 /* == Express Instance == */
 const app = express()
 
+const MongoDBStore = require('connect-mongodb-session')(session);
+
 /* == middlewares == */
 // set up cors middleware
-const whitelist = ['http://localhost:3000', 'heroku url']
+const whitelist = ['http://localhost:3000', 'https://proj3-calendar-frontend.herokuapp.com']
 const corsOptions ={
   origin: (origin, callback)=>{
     if(whitelist.indexOf(origin) !== -1 || !origin){
@@ -32,31 +34,39 @@ const corsOptions ={
 }
 app.use(cors(corsOptions))
 
-app.set('trust')  //trust first proxy
+app.set('trust proxy', 1)  //trust first proxy
 
 //this line is creating the object "req.session" (for heroku deployement)
-// app.use(session({
-//   secret: process.env.SECRET,
-//   resave: false,
-//   saveUninitialized: false,
-//   store: new MongoDBStore({
-//     uri: process.env.MONGODBURI,
-//     collection: 'mySessions'
-//   }),
-//   cookie: {
-//     sameSite: 'none',
-//     secure: true
-//   }
-// }))
+
+app.use(session({
+  secret: process.env.SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoDBStore({
+    uri: process.env.MONGODBURI,
+    collection: 'mySessions'
+  }),
+  cookie: {
+    sameSite: 'none',
+    secure: true
+  }
+}))
 
 
 //what we had before employement
-app.use(session({
-  secret: 'asdfas',
-  resave: false,
-  saveUninitialized: false,
-}))
+// app.use(session({
+//   secret: 'asdfas',
+//   resave: false,
+//   saveUninitialized: false,
+// }))
 
+const isAuthenticated = (req, res, next) => {
+    if (req.session.currentUser) {
+        return next()
+    } else {
+        res.status(403).json({msg:"login required"})
+    }
+}
 
 app.use(express.json())
 
