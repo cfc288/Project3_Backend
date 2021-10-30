@@ -66,7 +66,7 @@ app.get('/', function(req, res){
 })
 app.use('/appointments', routes.appointments)
 app.use('/availAppt', routes.availAppt)
-app.use('/users', routes.users)
+// app.use('/users', routes.users)
 
 /* == Server Bind == */
 app.listen(PORT, ()=>{
