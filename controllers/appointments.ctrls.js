@@ -46,9 +46,27 @@ const destroy = (req, res)=>{
   })
 }
 
+
+//single appt 
+const getAppt = (req, res) => {
+  console.log('req.body: ', req.body)
+  db.Appointment.findOne({ 
+    apptTime: req.body.apptTime,
+    apptDate: req.body.apptDate,  
+  }, (error, foundAppt)=>{
+    if(error) return res.status(400).json({error: error.message})
+    console.log('foundAppt: ', foundAppt)
+    return res.status(200).json({
+      data: foundAppt
+    })
+})
+}
+
+
 module.exports = {
   index,
   create,
   update,
   destroy,
+  getAppt,
 }
